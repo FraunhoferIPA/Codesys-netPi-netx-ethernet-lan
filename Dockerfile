@@ -36,27 +36,35 @@ ENV PASSWD=raspberry
 
 #do installation
 RUN apt-get update  \
-    && apt-get install -y openssh-server build-essential ifupdown isc-dhcp-client \
+    && apt-get install -y openssh-server build-essential ifupdown isc-dhcp-client net-tools psmisc \
 #do users
-    && useradd --create-home --shell /bin/bash pi \
+    	&& useradd --create-home --shell /bin/bash pi \
 	&& echo 'root:root' | chpasswd \
-    && echo $USER:$PASSWD | chpasswd \
-    && adduser $USER sudo \
+   	&& echo $USER:$PASSWD | chpasswd \
+   	&& adduser $USER sudo \
 	&& mkdir /var/run/sshd \
-    && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
-    && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
+ 	&& sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
+ 	&& sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
+	
 #install netX driver and netX ethernet supporting firmware
-    && dpkg -i /tmp/netx-docker-pi-drv-1.1.3-r1.deb \
-    && dpkg -i /tmp/netx-docker-pi-pns-eth-3.12.0.8.deb \
+ 	&& dpkg -i /tmp/netx-docker-pi-drv-1.1.3-r1.deb \
+ 	&& dpkg -i /tmp/netx-docker-pi-pns-eth-3.12.0.8.deb \
+	
 #compile netX network daemon
-    && gcc /tmp/cifx0daemon.c -o /opt/cifx/cifx0daemon -I/usr/include/cifx -Iincludes/ -lcifx -pthread \
+    	&& gcc /tmp/cifx0daemon.c -o /opt/cifx/cifx0daemon -I/usr/include/cifx -Iincludes/ -lcifx -pthread \
+#Codesys
+    && touch /usr/bin/modprobe \
+    && chmod +x /usr/bin/modprobe \
+    && mkdir /etc/modprobe.d \
+    && touch /etc/modprobe.d/blacklist.conf \
+    && touch /etc/modules \
 
 #clean up
 	&& rm -rf /tmp/* \
-    && apt-get remove build-essential \
-    && apt-get -yqq autoremove \
-    && apt-get -y clean \
-    && rm -rf /var/lib/apt/lists/*
+    	&& apt-get remove build-essential \
+    	&& apt-get -yqq autoremove \
+    	&& apt-get -y clean \
+    	&& rm -rf /var/lib/apt/lists/*
 
 #do ports
 EXPOSE 22 1217 4840
