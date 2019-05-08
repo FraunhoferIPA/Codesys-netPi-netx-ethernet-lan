@@ -16,6 +16,12 @@ term_handler() {
   exit 143; # 128 + 15 -- SIGTERM
 }
 
+#resolve HOST just in case
+if ! ( grep -q "127.0.0.1 localhost localhost.localdomain ${HOSTNAME}" /etc/hosts > /dev/null);
+then
+  echo "127.0.0.1 localhost localhost.localdomain ${HOSTNAME}" >> /etc/hosts
+fi
+
 # on callback, stop all started processes in term_handler
 trap 'kill ${!}; term_handler' SIGINT SIGKILL SIGTERM SIGQUIT SIGTSTP SIGSTOP SIGHUP
 
