@@ -28,7 +28,7 @@ LABEL maintainer="andreas.harrer@fokkersim.net" \
 COPY "./driver/*" "./firmware/*" /tmp/
 COPY "entrypoint.sh" /
 #fix windows permissions issue
-RUN chmod +x /entrypoint.sh
+#RUN chmod +x /entrypoint.sh
 	  
 #environment variables
 ENV USER=pi
@@ -51,7 +51,12 @@ RUN apt-get update  \
  	&& dpkg -i /tmp/netx-docker-pi-pns-eth-3.12.0.8.deb \
 	
 #compile netX network daemon
-    	&& gcc /tmp/cifx0daemon.c -o /opt/cifx/cifx0daemon -I/usr/include/cifx -Iincludes/ -lcifx -pthread \
+#    	&& gcc /tmp/cifx0daemon.c -o /opt/cifx/cifx0daemon -I/usr/include/cifx -Iincludes/ -lcifx -pthread \
+
+#compile netX network daemon that creates the cifx0 ethernet interface
+    && cp /tmp/cifx0daemon.c /opt/cifx/cifx0daemon.c \
+    && gcc /opt/cifx/cifx0daemon.c -o /opt/cifx/cifx0daemon -I/usr/include/cifx -Iincludes/ -lcifx -pthread \
+
 #Codesys
     && touch /usr/bin/modprobe \
     && chmod +x /usr/bin/modprobe \
