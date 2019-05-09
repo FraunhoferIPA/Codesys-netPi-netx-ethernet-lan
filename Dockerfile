@@ -14,14 +14,14 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 RUN [ "cross-build-start" ]
 
 #version
-ENV FOKKERSIMNETPI_CODESYS_NETX_NODERED_VERSION 1.0.0
+ENV IPA_NETPI_CODESYS_NETX 1.0.0
 
 #execute all commands as root
 USER root
 
 #labeling
-LABEL maintainer="andreas.harrer@fokkersim.net" \
-      version=$FOKKERSIMNETPI_CODESYS_NETX_NODERED_VERSION \
+LABEL maintainer="jcj@ipa.fraunhofer.de" \
+      version=$IPA_CODESYS_NETX \
       description="CODESYS Control with netX based TCP/IP network interface"
 
 #copy files
