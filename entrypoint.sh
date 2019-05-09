@@ -22,12 +22,19 @@ then
   echo "127.0.0.1 localhost localhost.localdomain ${HOSTNAME}" >> /etc/hosts
 fi
 
+#delete oöd host resolöv table?
+umount -f -r /etc/resolv.conf
+#Add DNS Server
+echo "nameserver 8.8.8.8" | tee /etc/resolv.conf
+
+
 # on callback, stop all started processes in term_handler
 trap 'kill ${!}; term_handler' SIGINT SIGKILL SIGTERM SIGQUIT SIGTSTP SIGSTOP SIGHUP
 
 # run applications in the background
 echo "starting ssh ..."
 /etc/init.d/ssh start
+
 
 # create netx "cifx0" ethernet network interface 
 /opt/cifx/cifx0daemon
@@ -51,6 +58,7 @@ fi
 
 if [ "$IP_ADDRESS" == "dhcp" ]
 then
+
   # set dhcp mode
   dhclient cifx0
   echo "cifx0 configured to dhcp"
