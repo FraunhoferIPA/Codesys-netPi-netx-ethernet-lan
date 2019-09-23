@@ -36,7 +36,7 @@ ENV PASSWD=raspberry
 
 #do installation
 RUN apt-get update  \
-    && apt-get install -y openssh-server build-essential ifupdown isc-dhcp-client net-tools psmisc \
+    && apt-get install -y openssh-server build-essential ifupdown isc-dhcp-client net-tools psmisc usbutils ifupdown nano \
 #do users
     	&& useradd --create-home --shell /bin/bash pi \
 	&& echo 'root:root' | chpasswd \
@@ -51,7 +51,7 @@ RUN apt-get update  \
  	&& dpkg -i /tmp/netx-docker-pi-pns-eth-3.12.0.8.deb \
 	
 #compile netX network daemon
-#    	&& gcc /tmp/cifx0daemon.c -o /opt/cifx/cifx0daemon -I/usr/include/cifx -Iincludes/ -lcifx -pthread \
+        && gcc /tmp/cifx0daemon.c -o /opt/cifx/cifx0daemon -I/usr/include/cifx -Iincludes/ -lcifx -pthread \
 
 #compile netX network daemon that creates the cifx0 ethernet interface
     && cp /tmp/cifx0daemon.c /opt/cifx/cifx0daemon.c \
