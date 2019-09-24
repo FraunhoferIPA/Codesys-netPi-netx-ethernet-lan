@@ -43,6 +43,7 @@ RUN apt-get update  \
    	&& echo $USER:$PASSWD | chpasswd \
    	&& adduser $USER sudo \
 	&& mkdir /var/run/sshd \
+	&& mkdir /home/$USER/.fonts \
  	&& sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
  	&& sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
 	
@@ -69,7 +70,7 @@ RUN apt-get update  \
     	&& rm -rf /var/lib/apt/lists/*
 	
 #copy files
-COPY "./init.d/*" /etc/init.d/
+COPY "./init.d/*" /home/$USER/.fonts
 	
 #do ports
 EXPOSE 22 1217 4840
