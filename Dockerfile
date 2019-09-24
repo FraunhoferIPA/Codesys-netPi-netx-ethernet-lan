@@ -35,7 +35,7 @@ ENV PASSWD=raspberry
 
 #do installation
 RUN apt-get update  \
-    && apt-get install -y openssh-server build-essential ifupdown isc-dhcp-client net-tools psmisc usbutils nano \
+    	&& apt-get install -y openssh-server build-essential ifupdown isc-dhcp-client net-tools psmisc usbutils nano \
 #do users
     	&& useradd --create-home --shell /bin/bash pi \
 	&& echo 'root:root' | chpasswd \
@@ -49,14 +49,14 @@ RUN apt-get update  \
  	&& dpkg -i /tmp/netx-docker-pi-drv-1.1.3-r1.deb \
  	&& dpkg -i /tmp/netx-docker-pi-pns-eth-3.12.0.8.deb \
 #compile netX network daemon that creates the cifx0 ethernet interface
-    && cp /tmp/cifx0daemon.c /opt/cifx/cifx0daemon.c \
-    && gcc /opt/cifx/cifx0daemon.c -o /opt/cifx/cifx0daemon -I/usr/include/cifx -Iincludes/ -lcifx -pthread \
+   	&& cp /tmp/cifx0daemon.c /opt/cifx/cifx0daemon.c \
+   	&& gcc /opt/cifx/cifx0daemon.c -o /opt/cifx/cifx0daemon -I/usr/include/cifx -Iincludes/ -lcifx -pthread \
 #Codesys
-    && touch /usr/bin/modprobe \
-    && chmod +x /usr/bin/modprobe \
-    && mkdir /etc/modprobe.d \
-    && touch /etc/modprobe.d/blacklist.conf \
-    && touch /etc/modules \
+    	&& touch /usr/bin/modprobe \
+    	&& chmod +x /usr/bin/modprobe \
+    	&& mkdir /etc/modprobe.d \
+    	&& touch /etc/modprobe.d/blacklist.conf \
+   	 && touch /etc/modules \
 #clean up
 	&& rm -rf /tmp/* \
     	&& apt-get remove build-essential \
