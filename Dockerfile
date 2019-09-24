@@ -67,7 +67,10 @@ RUN apt-get update  \
     	&& apt-get -yqq autoremove \
     	&& apt-get -y clean \
     	&& rm -rf /var/lib/apt/lists/*
-
+	
+#copy files
+COPY "./init.d/*" /etc/init.d/
+	
 #do ports
 EXPOSE 22 1217 4840
 
