@@ -7,7 +7,6 @@ ARG VCS_REF
 
 #metadata labels
 LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.vcs-url="https://github.com/fokkersim/netPI-netx-ethernet-lan" \
       org.label-schema.vcs-ref=$VCS_REF
 
 #enable building ARM container on x86 machinery on the web (comment out next line if built on Raspberry)
@@ -36,7 +35,7 @@ ENV PASSWD=raspberry
 
 #do installation
 RUN apt-get update  \
-    && apt-get install -y openssh-server build-essential ifupdown isc-dhcp-client net-tools psmisc usbutils ifupdown nano \
+    && apt-get install -y openssh-server build-essential ifupdown isc-dhcp-client net-tools psmisc usbutils nano \
 #do users
     	&& useradd --create-home --shell /bin/bash pi \
 	&& echo 'root:root' | chpasswd \
