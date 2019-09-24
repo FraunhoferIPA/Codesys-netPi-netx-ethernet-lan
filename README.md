@@ -72,7 +72,7 @@ STEP 3. Enter the following parameters under *Containers > + Add Container*
 
 Parameter | Value | Remark
 :---------|:------ |:------
-*Image* | **fokkersim/netpi-codesys-netx-nodered**
+*Image* | **FraunhoferIPA/Codesys-netPi-netx-ethernet-lan**
 *Network > Network* | **bridge** or **host** | use alternatively (host mode for EtherCAT master on eth0)
 *Port mapping* | *host* **22** -> *container* **22** | in bridge mode
 *Port mapping* | *host* **1217** -> *container* **1217** | in bridge mode
