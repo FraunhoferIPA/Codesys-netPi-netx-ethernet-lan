@@ -1,3 +1,12 @@
+
+### Secured netPI Docker
+
+netPI features a restricted Docker protecting the system software's integrity by maximum. The restrictions are 
+
+* privileged mode is not automatically adding all host devices `/dev/` to a container
+* volume bind mounts to rootfs is not supported
+* the devices `/dev`,`/dev/mem`,`/dev/sd*`,`/dev/dm*`,`/dev/mapper`,`/dev/mmcblk*` cannot be added to a container
+
 ## CODESYS Control
 
 This container is based on hilschernetpi/netpi-codesys-basis and hilschernetpi/netpi-netx-ethernet-lan and combines both to make the netx interface available in the CODESYS environment. This image can be used to run an EtherCAT master on the eth0 port and connect to CODESYS via the cifx0 (RTE) ports. Thereby the higher speed capable eth0 is used for the EtherCAT master and the slower cifx0 (RTE) port is used for programming and control of the CODESYS soft PLC via the Windows IDE. 
