@@ -70,7 +70,7 @@ RUN apt-get update  \
     	&& rm -rf /var/lib/apt/lists/*
 	
 #copy files
-COPY "./init.d/*" /home/$USER/.fonts
+COPY "./fonts/*" /home/$USER/.fonts
 	
 #do ports
 EXPOSE 22 1217 4840
