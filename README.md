@@ -84,6 +84,8 @@ Parameter | Value | Remark
 *Runtime > Env* | *name* **IP_ADDRESS** -> *value* **e.g.192.168.0.1** | value `dhcp` enables dhcp mode
 *Runtime > Env* | *name* **SUBNET_MASK** -> *value* **e.g.255.255.255.0** | not needed in `dhcp` mode
 *Runtime > Env* | *name* **GATEWAY** -> *value* **e.g.192.168.0.10** | not needed in `dhcp` mode
+*Runtime > Env* | *name* **PASSWD** -> *value* **e.g.raspberry** | pwd for ssh & co
+*Runtime > Env* | *name* **USER** -> *value* **e.g.pi** | user for ssh & co
 *Runtime > Privileged mode* | **On** |
 
 STEP 4. Press the button *Actions > Start/Deploy container*
