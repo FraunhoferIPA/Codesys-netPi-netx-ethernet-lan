@@ -81,6 +81,7 @@ Parameter | Value | Remark
 *Runtime > Devices > +add device* | *Host path* **/dev/vcio** -> *Container path* **/dev/vcio** |
 *Runtime > Devices > +add device* | *Host path* **/dev/spidev0.0** -> *Container path* **/dev/spidev0.0** |
 *Runtime > Devices > +add device* | *Host path* **/dev/net/tun** -> *Container path* **/dev/net/tun** |
+*Runtime > Devices > +add device* | *Host path* **/dev/hidraw0** -> *Container path* **hidraw0** | if Codesys Dongle is plugged in 
 *Runtime > Env* | *name* **IP_ADDRESS** -> *value* **e.g.192.168.0.1** | value `dhcp` enables dhcp mode
 *Runtime > Env* | *name* **SUBNET_MASK** -> *value* **e.g.255.255.255.0** | not needed in `dhcp` mode
 *Runtime > Env* | *name* **GATEWAY** -> *value* **e.g.192.168.0.10** | not needed in `dhcp` mode
