@@ -25,9 +25,6 @@ LABEL maintainer="jcj@ipa.fraunhofer.de" \
 
 #copy files
 COPY "./driver/*" "./firmware/*" /tmp/
-COPY "entrypoint.sh" /
-#fix windows permissions issue
-#RUN chmod +x /entrypoint.sh
 	  
 #environment variables
 ENV USER=pi
