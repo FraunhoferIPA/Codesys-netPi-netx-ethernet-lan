@@ -52,10 +52,10 @@ RUN apt-get update  \
     	&& dpkg -i /tmp/netx-docker-pi-drv-2.0.1-r0.deb \
     	&& dpkg -i /tmp/netx-docker-pi-pns-eth-3.12.0.8.deb \
 #compile netX network daemon that creates the cifx0 ethernet interface
-    && echo "Irq=/sys/class/gpio/gpio24/value" >> /opt/cifx/plugins/netx-spm/config0 \
-    && cp /tmp/*.h /usr/include/cifx \
-    && cp /tmp/cifx0daemon.c /opt/cifx/cifx0daemon.c \
-    && gcc /opt/cifx/cifx0daemon.c -o /opt/cifx/cifx0daemon -I/usr/include/cifx -Iincludes/ -lcifx -pthread \
+    	&& echo "Irq=/sys/class/gpio/gpio24/value" >> /opt/cifx/plugins/netx-spm/config0 \
+    	&& cp /tmp/*.h /usr/include/cifx \
+    	&& cp /tmp/cifx0daemon.c /opt/cifx/cifx0daemon.c \
+    	&& gcc /opt/cifx/cifx0daemon.c -o /opt/cifx/cifx0daemon -I/usr/include/cifx -Iincludes/ -lcifx -pthread \
 #clean up
     	&& rm -rf /tmp/* \
     	&& apt-get remove build-essential \
